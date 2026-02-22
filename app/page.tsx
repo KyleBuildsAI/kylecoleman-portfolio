@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { FadeIn } from "@/components/FadeIn";
 import { DotPattern } from "@/components/DotPattern";
+import { GitHubRepoCount } from "@/components/GitHubRepoCount";
 
 export default function Home() {
   return (
@@ -289,7 +290,7 @@ export default function Home() {
           <a href="https://github.com/KyleBuildsAI" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 transition-colors mb-2">
             github.com/KyleBuildsAI
           </a>
-          <p className="text-sm text-zinc-500">32 repositories</p>
+          <GitHubRepoCount username="KyleBuildsAI" />
         </FadeIn>
       </section>
 
