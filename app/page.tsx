@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { FadeIn } from "@/components/FadeIn";
 import { DotPattern } from "@/components/DotPattern";
 import { GitHubRepoCount } from "@/components/GitHubRepoCount";
+import { CurrentYear } from "@/components/CurrentYear";
 
 export default function Home() {
   return (
@@ -234,7 +235,7 @@ export default function Home() {
             <div className="space-y-8 relative border-l border-zinc-800 ml-3 pl-6">
               {[
                 { role: "Data Analyst and Automation Developer", company: "Accessory Power", time: "Currently" },
-                { role: "Senior IT Specialist (Team Lead)", company: "Malibu Tech Support | Calabasas, CA | October 2013 - September 2024", time: "Previously" },
+                { role: "Senior IT Specialist and Technical Lead", company: "Malibu Tech Support | Calabasas, CA | October 2013 - September 2024", time: "Previously" },
               ].map((item, i) => (
                 <div key={i} className="relative">
                   <div className="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-zinc-900 border-2 border-teal-500"></div>
@@ -329,7 +330,7 @@ export default function Home() {
             <a href="https://linkedin.com/in/kyledcoleman" className="text-zinc-600 hover:text-teal-400 transition-colors"><Linkedin className="w-5 h-5" /></a>
             <a href="https://github.com/KyleBuildsAI" className="text-zinc-600 hover:text-teal-400 transition-colors"><Github className="w-5 h-5" /></a>
           </div>
-          <p className="text-zinc-500 text-sm">© 2026 Kyle Coleman</p>
+          <p className="text-zinc-500 text-sm">© <CurrentYear /> Kyle Coleman</p>
         </div>
       </footer>
     </main>
