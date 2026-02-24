@@ -13,9 +13,21 @@ export default function Home() {
   return (
     <main className="relative min-h-screen overflow-hidden">
       <DotPattern />
-      
+
+      {/* NAV */}
+      <nav className="relative z-10 border-b border-zinc-900 bg-[#0a0a0a]/80 backdrop-blur-sm">
+        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+          <span className="text-white font-bold text-lg">Kyle Coleman</span>
+          <div className="flex items-center gap-6">
+            <Link href="#projects" className="text-zinc-400 hover:text-white text-sm transition-colors">Projects</Link>
+            <Link href="/blog" className="text-zinc-400 hover:text-white text-sm transition-colors">Blog</Link>
+            <Link href="#contact" className="text-zinc-400 hover:text-white text-sm transition-colors">Contact</Link>
+          </div>
+        </div>
+      </nav>
+
       {/* 1. HERO SECTION */}
-      <section className="relative pt-32 pb-20 px-6 lg:px-8 max-w-5xl mx-auto flex flex-col items-center text-center z-10">
+      <section className="relative pt-24 pb-20 px-6 lg:px-8 max-w-5xl mx-auto flex flex-col items-center text-center z-10">
         <FadeIn delay={0.1}>
           <div className="relative mb-8 h-32 w-32 md:h-40 md:w-40 overflow-hidden rounded-full ring-2 ring-zinc-800 ring-offset-4 ring-offset-[#0a0a0a] shadow-[0_0_40px_rgba(20,184,166,0.15)]">
             <Image
