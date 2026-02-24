@@ -26,8 +26,10 @@ export default function BlogPage() {
           </Link>
           <div className="flex items-center gap-6">
             <Link href="/#projects" className="text-zinc-400 hover:text-white text-sm transition-colors">Projects</Link>
-            <Link href="/blog" className="text-teal-400 text-sm font-medium">Blog</Link>
+            <span className="text-zinc-700">|</span>
             <Link href="/#contact" className="text-zinc-400 hover:text-white text-sm transition-colors">Contact</Link>
+            <span className="text-zinc-700">|</span>
+            <Link href="/blog" className="text-teal-400 text-sm font-medium">Blog</Link>
           </div>
         </div>
       </nav>
