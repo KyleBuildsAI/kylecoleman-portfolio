@@ -1,8 +1,6 @@
 import fs from "fs";
 import path from "path";
-import matter from "gray-matter";
-import { remark } from "remark";
-import html from "remark-html";
+import { parseFrontmatter, parseMarkdown } from "./markdown";
 
 const postsDirectory = path.join(process.cwd(), "content/blog");
 
@@ -34,28 +32,25 @@ export function getAllPosts(): PostMeta[] {
 
 function getPostMeta(slug: string): PostMeta {
   const filePath = path.join(postsDirectory, `${slug}.md`);
-  const fileContents = fs.readFileSync(filePath, "utf8");
-  const { data } = matter(fileContents);
+  const { data } = parseFrontmatter(filePath);
   return {
     slug,
-    title: data.title,
-    date: data.date,
-    description: data.description,
-    tags: data.tags ?? [],
+    title: data.title as string,
+    date: data.date as string,
+    description: data.description as string,
+    tags: (data.tags as string[]) ?? [],
   };
 }
 
 export async function getPostBySlug(slug: string): Promise<Post> {
   const filePath = path.join(postsDirectory, `${slug}.md`);
-  const fileContents = fs.readFileSync(filePath, "utf8");
-  const { data, content } = matter(fileContents);
-  const processed = await remark().use(html).process(content);
+  const { data, htmlContent } = await parseMarkdown(filePath);
   return {
     slug,
-    title: data.title,
-    date: data.date,
-    description: data.description,
-    tags: data.tags ?? [],
-    contentHtml: processed.toString(),
+    title: data.title as string,
+    date: data.date as string,
+    description: data.description as string,
+    tags: (data.tags as string[]) ?? [],
+    contentHtml: htmlContent,
   };
 }
