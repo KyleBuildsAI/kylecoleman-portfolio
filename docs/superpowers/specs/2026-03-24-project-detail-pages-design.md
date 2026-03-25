@@ -19,21 +19,23 @@ Each project gets a markdown file at `/content/projects/[slug].md`:
 ```yaml
 ---
 title: "OpenClaw"
+subtitle: "Hierarchical Agent Orchestration"   # short tagline shown on homepage card
 description: "20-agent orchestration system for autonomous task execution"
 date: "2026-02-23"
+order: 1                         # display order on homepage (ascending)
 status: "In Production"          # In Production | In Development | Coming Soon
 tags: [Multi-Agent, LiteLLM, OpenRouter, Docker, MCP, TrueNAS]
-image: "/OpenClaw-Setup.png"
-github: "https://github.com/KyleBuildsAI/openclaw"
+image: "/OpenClaw-Setup.png"     # optional - path to screenshot, omit for icon fallback
+github: "https://github.com/KyleBuildsAI/openclaw"  # optional - omit if no public repo
 demo: ""                         # optional - live demo URL
-video: ""                        # optional - YouTube/Vimeo embed URL
+video: ""                        # optional - YouTube/Vimeo URL (opens in new tab)
 ---
 
 Markdown body with project write-up...
 ```
 
-Required fields: `title`, `description`, `date`, `status`, `tags`, `image`, `github`.
-Optional fields: `demo`, `video` — omitted or empty means the corresponding button is not rendered.
+Required fields: `title`, `subtitle`, `description`, `date`, `status`, `tags`, `order`.
+Optional fields: `image`, `github`, `demo`, `video` — omitted or empty means the corresponding button/section is not rendered. Projects without an `image` fall back to an icon placeholder (matching current homepage behavior). Projects without `github` show no repo link button.
 
 Only projects with a markdown file get clickable cards on the homepage. The frontmatter is the single source of truth for both the homepage card and the detail page.
 
@@ -69,12 +71,20 @@ Only projects with a markdown file get clickable cards on the homepage. The fron
 - Card wraps in a Next.js `<Link>` to `/projects/[slug]`
 - Existing hover effects (border glow, shadow) serve as visual affordance
 - Cursor pointer and a "Read more →" hint at card bottom
-- Data (title, description, tags, status, image) pulled from markdown frontmatter
+- Data (title, subtitle, description, tags, status, image) pulled from markdown frontmatter via `getAllProjects()`
 
 **Non-clickable projects** (Coming Soon / no markdown file):
 - Cards render as they do now — no link, no cursor pointer
 - Slightly muted appearance signals nothing to click through to
 - Data stays hardcoded in `page.tsx`
+
+**Card ordering:** Homepage renders clickable project cards in the order returned by `getAllProjects()`, which sorts by a frontmatter `order` field (integer, ascending). This replaces date-based sorting since project display order is editorial, not chronological. Hardcoded Coming Soon cards render after the dynamic cards.
+
+**Slug-to-URL mappings:**
+- `openclaw` → `/projects/openclaw`
+- `phantom-depth` → `/projects/phantom-depth`
+- `ecommerce-data-pipeline` → `/projects/ecommerce-data-pipeline`
+- `multi-model-predictive-analytics` → `/projects/multi-model-predictive-analytics`
 
 ## Project Detail Page Layout
 
@@ -82,7 +92,7 @@ Route: `/projects/[slug]`
 
 Top to bottom:
 
-1. **Back navigation** — "← Back to Projects" link that navigates to homepage projects section
+1. **Back navigation** — "← Back to Projects" link (`href="/#projects"`) that navigates to the homepage projects section
 2. **Project hero:**
    - Title (large heading)
    - Status badge (emerald = In Production, amber = In Development)
@@ -93,22 +103,28 @@ Top to bottom:
 4. **Markdown content** — rendered HTML using existing `.prose-blog` styles
 5. **Footer nav** — "← Back to Projects" link at bottom
 
+**`/projects` route (no slug):** No listing page. Navigating to `/projects` returns a 404. This is intentional — the homepage IS the project listing. If this becomes confusing, a redirect can be added later.
+
 Uses `generateStaticParams()` for static export compatibility and `generateMetadata()` for SEO (same patterns as blog).
+
+**Video handling:** The "Watch Video" button opens the video URL in a new tab (`target="_blank"`). No iframe embedding — avoids CSP complexity for static export.
 
 ## Shared Markdown Utilities
 
-`lib/markdown.ts` extracts the common parsing logic:
+`lib/markdown.ts` extracts two shared functions:
 
 ```typescript
-parseMarkdown(filePath: string) → { frontmatter, htmlContent }
+// Metadata-only read (no remark processing) — used by listing pages
+parseFrontmatter(filePath: string) → { data: Record<string, unknown> }
+
+// Full parse with HTML conversion — used by detail pages
+parseMarkdown(filePath: string) → { data: Record<string, unknown>; htmlContent: string }
 ```
 
-- Reads file from disk
-- Parses YAML frontmatter with gray-matter
-- Converts markdown body to HTML with remark + remark-html
-- Returns both parts
+- `parseFrontmatter()` reads file and parses YAML frontmatter with gray-matter only (no markdown-to-HTML). Used by blog listing and homepage project cards to avoid unnecessary remark processing.
+- `parseMarkdown()` does the same plus converts the markdown body to HTML with remark + remark-html. Used by detail pages (blog posts, project pages).
 
-`lib/blog.ts` and `lib/projects.ts` each use `parseMarkdown()` internally but maintain their own typed interfaces, sorting logic, and content directory paths.
+Both return untyped `data` — calling code in `lib/blog.ts` and `lib/projects.ts` is responsible for mapping into their own typed interfaces (`PostMeta`, `ProjectMeta`, etc.).
 
 ## Error Handling
 
