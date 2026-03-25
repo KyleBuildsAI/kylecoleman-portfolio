@@ -5,11 +5,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { FadeIn } from "@/components/FadeIn";
+import { getAllProjects } from "@/lib/projects";
 import { DotPattern } from "@/components/DotPattern";
 import { GitHubRepoCount } from "@/components/GitHubRepoCount";
 import { CurrentYear } from "@/components/CurrentYear";
 
-export default function Home() {
+export default async function Home() {
+  const projects = await getAllProjects();
+
   return (
     <main className="relative min-h-screen overflow-hidden">
       <DotPattern />
@@ -148,52 +151,49 @@ export default function Home() {
         </FadeIn>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           
-          {/* Project 1 — OpenClaw */}
-          <FadeIn delay={0.1}>
-            <Card className="bg-zinc-900/60 border-zinc-800 overflow-hidden group hover:border-zinc-700 transition-all flex flex-col h-full hover:shadow-[0_0_30px_rgba(20,184,166,0.05)]">
-              <div className="relative h-56 w-full border-b border-zinc-800 bg-zinc-950 overflow-hidden">
-                <Image src="/OpenClaw-Setup.png" alt="OpenClaw — Multi-Agent AI Orchestration System" fill className="object-cover object-top opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-500" sizes="(max-width: 768px) 100vw, 50vw" />
-                <Badge className="absolute top-4 right-4 bg-emerald-500/10 text-emerald-400 border-emerald-500/20 backdrop-blur-sm pointer-events-none">In Production</Badge>
-              </div>
-              <CardHeader>
-                <CardTitle className="text-2xl text-white">OpenClaw — Multi-Agent AI Orchestration System</CardTitle>
-                <CardDescription className="text-teal-400 font-medium">Hierarchical Agent Orchestration</CardDescription>
-              </CardHeader>
-              <CardContent className="flex-1 flex flex-col">
-                <p className="text-zinc-400 mb-6 text-sm leading-relaxed">Self-hosted hierarchical orchestration system with 20+ agents across executive, primary, and sub-agent tiers. Features tiered LLM routing via OpenRouter and LiteLLM, self-healing failure recovery, MCP tool integration, and Docker Compose deployment on custom RTX 5090 hardware.</p>
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {["Multi-Agent", "LiteLLM", "OpenRouter", "Docker", "MCP", "TrueNAS"].map(tag => (
-                    <Badge key={tag} variant="outline" className="border-zinc-700 text-zinc-300 bg-zinc-900">{tag}</Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </FadeIn>
-
-          {/* Project 2 — Phantom Depth */}
-          <FadeIn delay={0.2}>
-            <Card className="bg-zinc-900/60 border-zinc-800 overflow-hidden group hover:border-zinc-700 transition-all flex flex-col h-full hover:shadow-[0_0_30px_rgba(20,184,166,0.05)]">
-              <div className="relative h-56 w-full border-b border-zinc-800 bg-zinc-950 overflow-hidden">
-                <Image src="/PhantomDepth.png" alt="Phantom Depth" fill className="object-cover object-top opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-500" sizes="(max-width: 768px) 100vw, 50vw" />
-                <Badge className="absolute top-4 right-4 bg-amber-500/10 text-amber-500 border-amber-500/20 backdrop-blur-sm pointer-events-none">In Development</Badge>
-              </div>
-              <CardHeader>
-                <CardTitle className="text-2xl text-white">Phantom Depth</CardTitle>
-                <CardDescription className="text-teal-400 font-medium">Proprietary Real-Time Visual Conversion Pipeline</CardDescription>
-              </CardHeader>
-              <CardContent className="flex-1 flex flex-col">
-                <p className="text-zinc-400 mb-6 text-sm leading-relaxed">Production-grade computer vision system architected from the ground up across a 200+ file codebase. Built entirely using frontier AI coding tools including Claude Code, Codex, and Cline, demonstrating that a single architect with the right AI stack can deliver systems at the scale and speed of a full engineering team. Targets professional-grade performance on consumer GPU hardware.</p>
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {["Python", "PyTorch", "OpenCV", "Claude Code", "AI-Assisted Dev"].map(tag => (
-                    <Badge key={tag} variant="outline" className="border-zinc-700 text-zinc-300 bg-zinc-900">{tag}</Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </FadeIn>
+          {projects.map((project, i) => (
+            <FadeIn key={project.slug} delay={0.1 * (i + 1)}>
+              <Link href={`/projects/${project.slug}`} className="block h-full">
+                <Card className="bg-zinc-900/60 border-zinc-800 overflow-hidden group hover:border-zinc-700 transition-all flex flex-col h-full hover:shadow-[0_0_30px_rgba(20,184,166,0.05)] cursor-pointer">
+                  <div className="relative h-56 w-full border-b border-zinc-800 bg-zinc-950 overflow-hidden">
+                    {project.image ? (
+                      <Image src={project.image} alt={project.title} fill className="object-cover object-top opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-500" sizes="(max-width: 768px) 100vw, 50vw" />
+                    ) : (
+                      <div className="flex items-center justify-center h-full">
+                        <div className="text-center">
+                          <Brain className="w-16 h-16 text-teal-400/40 mx-auto mb-2" />
+                          <span className="text-zinc-600 text-xs font-medium tracking-wider uppercase">{project.subtitle}</span>
+                        </div>
+                      </div>
+                    )}
+                    <Badge className={`absolute top-4 right-4 backdrop-blur-sm pointer-events-none ${
+                      project.status === "In Production"
+                        ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
+                        : "bg-amber-500/10 text-amber-500 border-amber-500/20"
+                    }`}>
+                      {project.status}
+                    </Badge>
+                  </div>
+                  <CardHeader>
+                    <CardTitle className="text-2xl text-white">{project.title}</CardTitle>
+                    <CardDescription className="text-teal-400 font-medium">{project.subtitle}</CardDescription>
+                  </CardHeader>
+                  <CardContent className="flex-1 flex flex-col">
+                    <p className="text-zinc-400 mb-6 text-sm leading-relaxed">{project.description}</p>
+                    <div className="flex flex-wrap gap-2 mt-auto">
+                      {project.tags.map(tag => (
+                        <Badge key={tag} variant="outline" className="border-zinc-700 text-zinc-300 bg-zinc-900">{tag}</Badge>
+                      ))}
+                    </div>
+                    <p className="text-teal-400 text-xs mt-4 font-medium group-hover:text-teal-300 transition-colors">Read more →</p>
+                  </CardContent>
+                </Card>
+              </Link>
+            </FadeIn>
+          ))}
 
           {/* Project 3 — PhotonCore GUI */}
-          <FadeIn delay={0.3}>
+          <FadeIn delay={0.5}>
             <Card className="bg-zinc-900/60 border-zinc-800 overflow-hidden group hover:border-zinc-700 transition-all flex flex-col h-full hover:shadow-[0_0_30px_rgba(20,184,166,0.05)]">
               <div className="relative h-56 w-full border-b border-zinc-800 bg-zinc-950 overflow-hidden">
                 <Image src="/PhotonCore-GUI.png" alt="PhotonCore GUI" fill className="object-cover object-top opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-500" sizes="(max-width: 768px) 100vw, 50vw" />
@@ -207,53 +207,6 @@ export default function Home() {
                 <p className="text-zinc-400 mb-6 text-sm leading-relaxed">A unified interface for local LLMs and AI APIs. Features project-based chat organization, prompt queuing, session parameter controls, and memory management. Built for power users who need flexibility and control.</p>
                 <div className="flex flex-wrap gap-2 mt-auto">
                   {["Python", "Local LLMs", "API Integration", "Custom UI"].map(tag => (
-                    <Badge key={tag} variant="outline" className="border-zinc-700 text-zinc-300 bg-zinc-900">{tag}</Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </FadeIn>
-
-          {/* Project 4 */}
-          <FadeIn delay={0.4}>
-            <Card className="bg-zinc-900/60 border-zinc-800 overflow-hidden group hover:border-zinc-700 transition-all flex flex-col h-full hover:shadow-[0_0_30px_rgba(20,184,166,0.05)]">
-              <div className="relative h-56 w-full border-b border-zinc-800 bg-zinc-950 overflow-hidden">
-                <Image src="/ecommerce_pipeline.png" alt="eCommerce Data Pipeline" fill className="object-cover object-top opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-500" sizes="(max-width: 768px) 100vw, 50vw" />
-                <Badge className="absolute top-4 right-4 bg-emerald-500/10 text-emerald-400 border-emerald-500/20 backdrop-blur-sm pointer-events-none">In Production</Badge>
-              </div>
-              <CardHeader>
-                <CardTitle className="text-2xl text-white">eCommerce Data Pipeline</CardTitle>
-                <CardDescription className="text-teal-400 font-medium">Production Automation System</CardDescription>
-              </CardHeader>
-              <CardContent className="flex-1 flex flex-col">
-                <p className="text-zinc-400 mb-6 text-sm leading-relaxed">Custom-built system that collects and analyzes eCommerce data hourly instead of weekly. Reduced manual task time by 50% and enabled data-driven decisions that drove 15% revenue growth.</p>
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {["Python", "Automation", "Data Analysis", "Production"].map(tag => (
-                    <Badge key={tag} variant="outline" className="border-zinc-700 text-zinc-300 bg-zinc-900">{tag}</Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </FadeIn>
-
-          {/* Project 5 — Predictive Analytics System */}
-          <FadeIn delay={0.5}>
-            <Card className="bg-zinc-900/60 border-zinc-800 overflow-hidden group hover:border-zinc-700 transition-all flex flex-col h-full hover:shadow-[0_0_30px_rgba(20,184,166,0.05)]">
-              <div className="relative h-56 w-full border-b border-zinc-800 bg-zinc-950 overflow-hidden flex items-center justify-center">
-                <div className="text-center">
-                  <Brain className="w-16 h-16 text-teal-400/40 mx-auto mb-2" />
-                  <span className="text-zinc-600 text-xs font-medium tracking-wider uppercase">Predictive Analytics</span>
-                </div>
-                <Badge className="absolute top-4 right-4 bg-emerald-500/10 text-emerald-400 border-emerald-500/20 backdrop-blur-sm pointer-events-none">In Production</Badge>
-              </div>
-              <CardHeader>
-                <CardTitle className="text-2xl text-white">Multi-Model Predictive Analytics System</CardTitle>
-                <CardDescription className="text-teal-400 font-medium">AI-Powered Forecasting Engine</CardDescription>
-              </CardHeader>
-              <CardContent className="flex-1 flex flex-col">
-                <p className="text-zinc-400 mb-6 text-sm leading-relaxed">Fully automated pipeline combining 5 frontier LLMs as a consensus decision layer for market trend and demand forecasting. Covers timed web scraping, structured data organization, multi-model analysis with custom algorithmic prompt chains, and a consolidated results dashboard. Achieved 77%+ prediction accuracy, outperforming any single-model approach.</p>
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {["Python", "Multi-LLM Consensus", "Web Scraping", "Prompt Engineering", "Data Pipeline"].map(tag => (
                     <Badge key={tag} variant="outline" className="border-zinc-700 text-zinc-300 bg-zinc-900">{tag}</Badge>
                   ))}
                 </div>
