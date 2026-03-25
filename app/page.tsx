@@ -193,7 +193,7 @@ export default async function Home() {
           ))}
 
           {/* Project 3 — PhotonCore GUI */}
-          <FadeIn delay={0.5}>
+          <FadeIn delay={0.1 * (projects.length + 1)}>
             <Card className="bg-zinc-900/60 border-zinc-800 overflow-hidden group hover:border-zinc-700 transition-all flex flex-col h-full hover:shadow-[0_0_30px_rgba(20,184,166,0.05)]">
               <div className="relative h-56 w-full border-b border-zinc-800 bg-zinc-950 overflow-hidden">
                 <Image src="/PhotonCore-GUI.png" alt="PhotonCore GUI" fill className="object-cover object-top opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-500" sizes="(max-width: 768px) 100vw, 50vw" />
@@ -215,7 +215,7 @@ export default async function Home() {
           </FadeIn>
 
           {/* Project 6 — Coming Soon */}
-          <FadeIn delay={0.6}>
+          <FadeIn delay={0.1 * (projects.length + 2)}>
             <Card className="bg-zinc-900/60 border-zinc-800 overflow-hidden group hover:border-zinc-700 transition-all flex flex-col h-full hover:shadow-[0_0_30px_rgba(20,184,166,0.05)]">
               <div className="relative h-56 w-full border-b border-zinc-800 bg-zinc-950 overflow-hidden flex items-center justify-center">
                 <div className="text-center">
