@@ -170,6 +170,15 @@
 .prose-blog hr {
   @apply border-zinc-800 my-8;
 }
+.prose-blog table {
+  @apply w-full mb-6 border-collapse;
+}
+.prose-blog th {
+  @apply text-left text-white font-semibold px-4 py-2 border-b border-zinc-700 bg-zinc-900/50 text-sm;
+}
+.prose-blog td {
+  @apply px-4 py-2 border-b border-zinc-800 text-zinc-300 text-sm;
+}
 .prose-blog img {
   @apply rounded-xl my-6;
 }
