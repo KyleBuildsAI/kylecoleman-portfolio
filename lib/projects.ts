@@ -17,6 +17,7 @@ export interface ProjectMeta {
   github?: string;
   demo?: string;
   video?: string;
+  isNew: boolean;
 }
 
 export interface Project extends ProjectMeta {
@@ -38,6 +39,15 @@ export function getAllProjects(): ProjectMeta[] {
     .sort((a, b) => a.order - b.order);
 }
 
+const NEW_THRESHOLD_DAYS = 30;
+
+function isProjectNew(dateStr: string): boolean {
+  const projectDate = new Date(dateStr);
+  const now = new Date();
+  const diffMs = now.getTime() - projectDate.getTime();
+  return diffMs < NEW_THRESHOLD_DAYS * 24 * 60 * 60 * 1000;
+}
+
 function getProjectMeta(slug: string): ProjectMeta {
   const filePath = path.join(projectsDirectory, `${slug}.md`);
   const { data } = parseFrontmatter(filePath);
@@ -54,6 +64,7 @@ function getProjectMeta(slug: string): ProjectMeta {
     github: (data.github as string) || undefined,
     demo: (data.demo as string) || undefined,
     video: (data.video as string) || undefined,
+    isNew: isProjectNew(data.date as string),
   };
 }
 
@@ -73,6 +84,7 @@ export async function getProjectBySlug(slug: string): Promise<Project> {
     github: (data.github as string) || undefined,
     demo: (data.demo as string) || undefined,
     video: (data.video as string) || undefined,
+    isNew: isProjectNew(data.date as string),
     contentHtml: htmlContent,
   };
 }
