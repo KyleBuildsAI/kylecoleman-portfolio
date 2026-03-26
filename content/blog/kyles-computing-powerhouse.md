@@ -1,6 +1,6 @@
 ---
 title: "Kyle's Computing Powerhouse: Core System"
-date: "2026-03-25"
+date: "2025-05-23"
 description: "A complete breakdown of my custom-built workstation — from the i9-14900F and RTX 5090 to 30TB of storage. Built for AI development, multi-agent orchestration, and everything in between."
 tags: ["Hardware", "PC Build", "RTX 5090", "Workstation"]
 ---
