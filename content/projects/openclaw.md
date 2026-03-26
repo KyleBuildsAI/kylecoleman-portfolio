@@ -6,7 +6,7 @@ date: "2026-02-23"
 order: 1
 status: "In Production"
 tags: ["Multi-Agent", "LiteLLM", "OpenRouter", "Docker", "MCP", "TrueNAS"]
-image: "/OpenClaw-Setup.png"
+image: "/openclaw_architecture_1.gif"
 github: "https://github.com/KyleBuildsAI/openclaw"
 ---
 
