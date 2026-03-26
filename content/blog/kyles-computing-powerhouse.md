@@ -88,3 +88,5 @@ A QD-OLED panel at 4K and 240Hz. Perfect pixel contrast for dark-themed code edi
 I didn't build a gaming PC that happens to do AI work. I built an AI workstation that happens to be great for everything else. Every component choice was driven by the same question: *will this let me run more models, process more data, and iterate faster?*
 
 The answer is yes.
+
+[View the full build on PCPartPicker →](https://pcpartpicker.com/list/gMNWqH)
