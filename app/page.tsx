@@ -173,6 +173,11 @@ export default async function Home() {
                     }`}>
                       {project.status}
                     </Badge>
+                    {project.isNew && (
+                      <Badge className="absolute top-4 left-4 bg-blue-500/10 text-blue-400 border-blue-500/20 backdrop-blur-sm pointer-events-none">
+                        New
+                      </Badge>
+                    )}
                   </div>
                   <CardHeader>
                     <CardTitle className="text-2xl text-white">{project.title}</CardTitle>

@@ -76,6 +76,11 @@ export default async function ProjectPage({
           {/* Hero */}
           <div className="flex items-center gap-3 mb-4">
             <StatusBadge status={project.status} />
+            {project.isNew && (
+              <Badge className="bg-blue-500/10 text-blue-400 border-blue-500/20">
+                New
+              </Badge>
+            )}
           </div>
 
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-3">
