@@ -25,12 +25,19 @@ function isProjectNew(dateStr: string): boolean {
 }
 ```
 
-`isNew` is added to the `ProjectMeta` interface as a computed field (not stored in frontmatter).
+`isNew: boolean` is added to the `ProjectMeta` interface as a required computed field (not stored in frontmatter). Since `Project extends ProjectMeta`, both interfaces include it.
+
+### Integration Points
+
+`isProjectNew()` is called inside **both** data functions:
+
+- **`getProjectMeta()`** — add `isNew: isProjectNew(data.date as string)` to the returned object. This feeds the homepage cards via `getAllProjects()`.
+- **`getProjectBySlug()`** — add `isNew: isProjectNew(data.date as string)` to the returned object. This feeds the detail page.
 
 ### Visual Treatment
 
-- **Homepage card:** Blue/indigo badge in the **top-left** corner of the card image area, opposite the existing status badge (top-right). Style: `bg-blue-500/10 text-blue-400 border-blue-500/20 backdrop-blur-sm`. Text: "New".
-- **Detail page hero:** "New" badge displayed alongside the status badge in the hero area.
+- **Homepage card:** Blue/indigo badge positioned `absolute top-4 left-4` in the card image area, opposite the existing status badge (`absolute top-4 right-4`). Style: `bg-blue-500/10 text-blue-400 border-blue-500/20 backdrop-blur-sm`. Text: "New".
+- **Detail page hero:** "New" badge rendered inside the existing `<div className="flex items-center gap-3 mb-4">` container, alongside the `StatusBadge` component.
 - Badge does not appear if `isNew` is `false`.
 
 ### Expiry
@@ -58,7 +65,7 @@ demo: "https://hard-summer-genre-evolution.vercel.app/"
 ---
 ```
 
-Markdown body: scaffold from the user-provided description (about the project, motivation, approach, accuracy checks, prompting philosophy).
+Markdown body: the full write-up content based on the user's description, covering motivation (personal connection to the festival), approach (using Claude Code to research and categorize 800+ appearances), accuracy checks, and prompting philosophy. This is authored content, not placeholder — use the user's own words as the base.
 
 ### AI Dream Engine
 
@@ -79,7 +86,7 @@ demo: "https://ai-dream-engine.vercel.app/"
 ---
 ```
 
-Markdown body: scaffold from the user-provided description (iRobot inspiration, concept, how it works).
+Markdown body: write-up covering the iRobot inspiration (the robot dreaming scene), the concept of getting Claude Opus 4.6 to "dream" via extended thinking, and what the experience is like. Use the user's own words as the base.
 
 ### Impact on Homepage
 
