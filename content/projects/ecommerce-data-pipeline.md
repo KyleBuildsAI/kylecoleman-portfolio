@@ -3,7 +3,7 @@ title: "eCommerce Data Pipeline"
 subtitle: "Production Automation System"
 description: "Custom-built system that collects and analyzes eCommerce data hourly instead of weekly."
 date: "2025-06-01"
-order: 3
+order: 11
 status: "In Production"
 tags: ["Python", "Automation", "Data Analysis", "Production"]
 image: "/ecommerce_pipeline.png"

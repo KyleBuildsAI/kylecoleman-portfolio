@@ -3,7 +3,7 @@ title: "Multi-Model Predictive Analytics System"
 subtitle: "AI-Powered Forecasting Engine"
 description: "Fully automated pipeline combining 5 frontier LLMs as a consensus decision layer for market trend and demand forecasting."
 date: "2025-09-01"
-order: 4
+order: 12
 status: "In Production"
 tags: ["Python", "Multi-LLM Consensus", "Web Scraping", "Prompt Engineering", "Data Pipeline"]
 ---
