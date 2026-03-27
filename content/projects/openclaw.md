@@ -18,7 +18,7 @@ Self-hosted hierarchical orchestration system with 20+ agents across executive, 
 
 OpenClaw's agents are live on Discord, showing real-time status and activity. Each agent has its own identity, role, and presence in the server.
 
-![OpenClaw Discord — Live Agent Roster](/OpenClaw-Discord.png)
+<img src="/OpenClaw-Discord.png" alt="OpenClaw Discord — Live Agent Roster" style="max-width:300px;border-radius:12px;margin:1rem 0;" />
 
 ## Meet the Agents
 
