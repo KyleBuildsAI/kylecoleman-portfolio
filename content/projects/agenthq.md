@@ -3,7 +3,7 @@ title: "AgentHQ"
 subtitle: "Isometric AI Agent Visualization"
 description: "A real-time isometric pixel art visualization of AI agents working across specialized zones — Server Core, Collab Hub, Library, and Orchestra."
 date: "2026-03-26"
-order: 8
+order: 4
 status: "In Development"
 tags: ["Visualization", "Multi-Agent", "Pixel Art", "Real-Time", "OpenClaw"]
 image: "/AgentHQ.png"

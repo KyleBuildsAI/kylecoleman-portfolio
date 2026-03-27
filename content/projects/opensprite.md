@@ -3,7 +3,7 @@ title: "OpenSprite"
 subtitle: "Sprite Sheet Viewer & Testing Tool"
 description: "A web-based tool for importing, previewing, and testing sprite assets before integrating them into a project."
 date: "2026-03-26"
-order: 9
+order: 8
 status: "In Production"
 tags: ["Web Tool", "Sprites", "AgentHQ", "Open Source", "Game Dev"]
 image: "/opensprite-card.png"

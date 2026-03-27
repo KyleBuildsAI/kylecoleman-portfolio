@@ -3,7 +3,7 @@ title: "HARD Summer Genre Analytics"
 subtitle: "11 Years of Festival Lineup Data"
 description: "800+ artist appearances researched, categorized, and visualized across 11 years of HARD Summer lineups from 2015 to 2026."
 date: "2026-03-25"
-order: 5
+order: 6
 status: "In Production"
 tags: ["Data Visualization", "Claude Code", "AI-Assisted Dev", "Analytics"]
 image: "/hard-summer-analytics.png"

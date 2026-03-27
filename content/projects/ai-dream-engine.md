@@ -3,7 +3,7 @@ title: "AI Dream Engine"
 subtitle: "AI Dreaming Machine"
 description: "Inspired by iRobot — an experiment to see if Claude Opus 4.6 can dream. Surreal first-person narratives generated through continuous deep thought."
 date: "2026-03-25"
-order: 6
+order: 7
 status: "In Production"
 tags: ["Claude API", "Next.js", "Extended Thinking", "Creative AI"]
 image: "/dream-engine.png"
