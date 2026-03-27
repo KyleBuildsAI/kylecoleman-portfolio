@@ -7,8 +7,8 @@ order: 9
 status: "In Production"
 tags: ["Web Tool", "Sprites", "AgentHQ", "Open Source", "Game Dev"]
 image: "/opensprite-card.png"
-github: "https://github.com/KyleBuildsAI/opensprite"
-demo: "https://opensprite.vercel.app"
+github: "https://github.com/KyleBuildsAI/OpenSprite"
+demo: "https://open-sprite-one.vercel.app/"
 ---
 
 ## Overview
