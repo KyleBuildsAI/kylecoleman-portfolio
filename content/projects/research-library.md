@@ -1,6 +1,6 @@
 ---
 title: "Research Library + OpenClaw Integration"
-subtitle: "AI-Powered Research Hub | OpenClaw Integration"
+subtitle: "AI-Powered Research Hub"
 description: "A self-hosted research dashboard built on top of OpenClaw that turns passive bookmarking into active intelligence gathering."
 date: "2026-03-26"
 order: 7
