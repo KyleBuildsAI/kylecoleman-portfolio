@@ -10,12 +10,18 @@ tags: ["Python", "Multi-LLM Consensus", "Web Scraping", "Prompt Engineering", "D
 
 ## Overview
 
-Fully automated pipeline combining 5 frontier LLMs as a consensus decision layer for market trend and demand forecasting. Covers timed web scraping, structured data organization, multi-model analysis with custom algorithmic prompt chains, and a consolidated results dashboard. Achieved 77%+ prediction accuracy, outperforming any single-model approach.
+An end-to-end predictive analytics pipeline that automates data collection, multi-model inference, and consensus-based forecasting to deliver high-accuracy predictions.
 
-## Multi-Model Consensus
+## How It Works
 
-*Coming soon — how the LLM consensus layer works.*
+The system begins with automated web scraping to collect and structure raw data from relevant sources. That data is then formatted and distributed across five top-tier LLMs for independent analysis. Each model returns its own prediction, and the system aggregates the results using a majority-consensus methodology — where the prevailing prediction across models is selected as the final output.
 
-## Results
+## Why Multi-Model Consensus
 
-*Coming soon — prediction accuracy and business impact.*
+This ensemble approach significantly reduces individual model error rates by leveraging the collective intelligence of multiple architectures. Rather than relying on any single model's judgment, the system treats disagreement as signal and agreement as confidence.
+
+All results are compiled into a structured, exportable format (Excel / Google Sheets) for easy review and analysis.
+
+## Key Result
+
+**77% prediction accuracy** across real-world datasets, validated over repeated use — consistently outperforming any single-model approach.
