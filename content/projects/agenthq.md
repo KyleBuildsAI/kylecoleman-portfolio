@@ -9,10 +9,6 @@ tags: ["Visualization", "Multi-Agent", "Pixel Art", "Real-Time", "OpenClaw"]
 image: "/AgentHQ.png"
 ---
 
-## Beta Demo
-
-<video src="/AgentHQ-Beta.mp4" controls playsinline style="width:100%;border-radius:12px;margin-bottom:1.5rem;"></video>
-
 ## Overview
 
 AgentHQ is an isometric pixel art visualization that brings AI agent activity to life. Watch agents work in real time across specialized zones — the Server Core, Collab Hub, Library, Workstation, and Orchestra — each representing a different function in the multi-agent system.
