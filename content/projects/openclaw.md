@@ -7,7 +7,6 @@ order: 1
 status: "In Production"
 tags: ["Multi-Agent", "LiteLLM", "OpenRouter", "Docker", "MCP", "TrueNAS"]
 image: "/openclaw_architecture_1.gif"
-github: "https://github.com/KyleBuildsAI/openclaw"
 ---
 
 ## Overview
