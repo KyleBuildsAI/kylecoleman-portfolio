@@ -151,73 +151,64 @@ export default async function Home() {
         </FadeIn>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           
-          {projects.map((project, i) => (
-            <FadeIn key={project.slug} delay={0.1 * (i + 1)}>
-              <Link href={`/projects/${project.slug}`} className="block h-full">
-                <Card className="bg-zinc-900/60 border-zinc-800 overflow-hidden group hover:border-zinc-700 transition-all flex flex-col h-full hover:shadow-[0_0_30px_rgba(20,184,166,0.05)] cursor-pointer">
-                  <div className="relative h-56 w-full border-b border-zinc-800 bg-zinc-950 overflow-hidden">
-                    {project.image ? (
-                      <Image src={project.image} alt={project.title} fill className="object-cover object-top opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-500" sizes="(max-width: 768px) 100vw, 50vw" />
-                    ) : (
-                      <div className="flex items-center justify-center h-full">
-                        <div className="text-center">
-                          <Brain className="w-16 h-16 text-teal-400/40 mx-auto mb-2" />
-                          <span className="text-zinc-600 text-xs font-medium tracking-wider uppercase">{project.subtitle}</span>
-                        </div>
+          {projects.map((project, i) => {
+            const isComingSoon = project.status === "Coming Soon";
+            const card = (
+              <Card className={`bg-zinc-900/60 border-zinc-800 overflow-hidden group hover:border-zinc-700 transition-all flex flex-col h-full hover:shadow-[0_0_30px_rgba(20,184,166,0.05)]${isComingSoon ? "" : " cursor-pointer"}`}>
+                <div className="relative h-56 w-full border-b border-zinc-800 bg-zinc-950 overflow-hidden">
+                  {project.image ? (
+                    <Image src={project.image} alt={project.title} fill className="object-cover object-top opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-500" sizes="(max-width: 768px) 100vw, 50vw" />
+                  ) : (
+                    <div className="flex items-center justify-center h-full">
+                      <div className="text-center">
+                        <Brain className="w-16 h-16 text-teal-400/40 mx-auto mb-2" />
+                        <span className="text-zinc-600 text-xs font-medium tracking-wider uppercase">{project.subtitle}</span>
                       </div>
-                    )}
-                    <Badge className={`absolute top-4 right-4 backdrop-blur-sm pointer-events-none ${
-                      project.status === "In Production"
-                        ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
-                        : "bg-amber-500/10 text-amber-500 border-amber-500/20"
-                    }`}>
-                      {project.status}
-                    </Badge>
-                    {project.isNew && (
-                      <Badge className="absolute top-4 left-4 bg-blue-500/10 text-blue-400 border-blue-500/20 backdrop-blur-sm pointer-events-none">
-                        New
-                      </Badge>
-                    )}
-                  </div>
-                  <CardHeader>
-                    <CardTitle className="text-2xl text-white">{project.title}</CardTitle>
-                    <CardDescription className="text-teal-400 font-medium">{project.subtitle}</CardDescription>
-                  </CardHeader>
-                  <CardContent className="flex-1 flex flex-col">
-                    <p className="text-zinc-400 mb-6 text-sm leading-relaxed">{project.description}</p>
-                    <div className="flex flex-wrap gap-2 mt-auto">
-                      {project.tags.map(tag => (
-                        <Badge key={tag} variant="outline" className="border-zinc-700 text-zinc-300 bg-zinc-900">{tag}</Badge>
-                      ))}
                     </div>
-                    <p className="text-teal-400 text-xs mt-4 font-medium group-hover:text-teal-300 transition-colors">Read more →</p>
-                  </CardContent>
-                </Card>
-              </Link>
-            </FadeIn>
-          ))}
-
-          {/* Project 3 — PhotonCore GUI */}
-          <FadeIn delay={0.1 * (projects.length + 1)}>
-            <Card className="bg-zinc-900/60 border-zinc-800 overflow-hidden group hover:border-zinc-700 transition-all flex flex-col h-full hover:shadow-[0_0_30px_rgba(20,184,166,0.05)]">
-              <div className="relative h-56 w-full border-b border-zinc-800 bg-zinc-950 overflow-hidden">
-                <Image src="/PhotonCore-GUI.png" alt="PhotonCore GUI" fill className="object-cover object-top opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-500" sizes="(max-width: 768px) 100vw, 50vw" />
-                <Badge className="absolute top-4 right-4 bg-zinc-900/80 text-zinc-300 border-zinc-700 backdrop-blur-sm pointer-events-none">Open Source Coming Soon</Badge>
-              </div>
-              <CardHeader>
-                <CardTitle className="text-2xl text-white">PhotonCore GUI</CardTitle>
-                <CardDescription className="text-teal-400 font-medium">Custom LLM Interface</CardDescription>
-              </CardHeader>
-              <CardContent className="flex-1 flex flex-col">
-                <p className="text-zinc-400 mb-6 text-sm leading-relaxed">A unified interface for local LLMs and AI APIs. Features project-based chat organization, prompt queuing, session parameter controls, and memory management. Built for power users who need flexibility and control.</p>
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {["Python", "Local LLMs", "API Integration", "Custom UI"].map(tag => (
-                    <Badge key={tag} variant="outline" className="border-zinc-700 text-zinc-300 bg-zinc-900">{tag}</Badge>
-                  ))}
+                  )}
+                  <Badge className={`absolute top-4 right-4 backdrop-blur-sm pointer-events-none ${
+                    project.status === "In Production"
+                      ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
+                      : project.status === "Coming Soon"
+                        ? "bg-zinc-900/80 text-zinc-300 border-zinc-700"
+                        : "bg-amber-500/10 text-amber-500 border-amber-500/20"
+                  }`}>
+                    {project.status === "Coming Soon" ? "Open Source Coming Soon" : project.status}
+                  </Badge>
+                  {project.isNew && (
+                    <Badge className="absolute top-4 left-4 bg-blue-500/10 text-blue-400 border-blue-500/20 backdrop-blur-sm pointer-events-none">
+                      New
+                    </Badge>
+                  )}
                 </div>
-              </CardContent>
-            </Card>
-          </FadeIn>
+                <CardHeader>
+                  <CardTitle className="text-2xl text-white">{project.title}</CardTitle>
+                  <CardDescription className="text-teal-400 font-medium">{project.subtitle}</CardDescription>
+                </CardHeader>
+                <CardContent className="flex-1 flex flex-col">
+                  <p className="text-zinc-400 mb-6 text-sm leading-relaxed">{project.description}</p>
+                  <div className="flex flex-wrap gap-2 mt-auto">
+                    {project.tags.map(tag => (
+                      <Badge key={tag} variant="outline" className="border-zinc-700 text-zinc-300 bg-zinc-900">{tag}</Badge>
+                    ))}
+                  </div>
+                  {!isComingSoon && (
+                    <p className="text-teal-400 text-xs mt-4 font-medium group-hover:text-teal-300 transition-colors">Read more →</p>
+                  )}
+                </CardContent>
+              </Card>
+            );
+            return (
+              <FadeIn key={project.slug} delay={0.1 * (i + 1)}>
+                {isComingSoon ? card : (
+                  <Link href={`/projects/${project.slug}`} className="block h-full">
+                    {card}
+                  </Link>
+                )}
+              </FadeIn>
+            );
+          })}
+
 
 
         </div>
