@@ -9,32 +9,38 @@ tags: ["Python", "PyTorch", "OpenCV", "Claude Code", "AI-Assisted Dev"]
 image: "/PhantomDepth.png"
 ---
 
-## Overview
+## The Goal
 
-Production-grade computer vision system architected from the ground up across a 200+ file codebase. Built entirely using frontier AI coding tools including Claude Code, Codex, and Cline, demonstrating that a single architect with the right AI stack can deliver systems at the scale and speed of a full engineering team. Targets professional-grade performance on consumer GPU hardware.
+Build a real-time 2D-to-3D video converter that runs on consumer hardware — not just expensive enterprise GPUs. The kind of tool that anyone with a decent graphics card could actually use.
 
-## Project History
+## Where It Started
 
-### V1 — Command Line Interface
-
-The first version of Phantom Depth was a pure CLI tool. No GUI, no frills — just raw processing power focused on getting the core pipeline working.
+I found an open-source project on GitHub that hadn't been updated in two years. I forked it, modified it, extended the CLI, and pushed the frame rate and strength settings well beyond what it originally supported.
 
 ![Phantom Depth V1 CLI](/v1%20CLI%201.png)
 
-![Phantom Depth V1 CLI — Processing](/v1%20CLI%202.png)
+![Phantom Depth V1 CLI — Processing Output](/v1%20CLI%202.png)
 
-### V1 — Windowed Interface
+But the more features I added, the less stable it became. Results weren't improving. I made the call to rebuild from scratch — 100% my own code.
 
-Once the core pipeline was solid, I built out a windowed interface to make it easier to visualize results in real time and iterate on parameters without restarting from the terminal.
+## The Real Problem
+
+The codebase grew to over 200 files, and the AI coding tools I was using couldn't hold that much context. They'd forget what was already built, create duplicate files, and try to rebuild features that already existed. After a 12-hour Saturday session where I was still no closer to a working build, I stopped and asked myself a different question: what if the code isn't the problem? What if my tools and my process are the problem?
+
+So I changed both.
+
+I moved to Claude Code and Cline with OpenRouter, then set up persistent markdown files so the AI always knew what had been built and what the architecture looked like. That single change eliminated the duplicate file problem entirely. For the first time, I could make changes to a 200+ file codebase without losing what I'd already built.
+
+## The Breakthrough
 
 ![Phantom Depth V1 Window](/v1%20Window.png)
 
-### V2 — Current Version
+I got a working demo with real optimizations, settings that actually function, and no more phantom duplicate files. Then I discovered Google Stitch, which let me redesign the entire interface from a screenshot.
 
-V2 is a ground-up rebuild with a completely redesigned interface, improved processing pipeline, and better performance on consumer GPU hardware.
+![Phantom Depth V2 — Current Version](/v2%20Window.png)
 
-![Phantom Depth V2 Window](/v2%20Window.png)
+I'm now on version 4 with a completely redesigned UI that's intuitive enough for non-technical users — a ground-up rebuild with improved processing and better performance on consumer GPU hardware.
 
-## AI-Assisted Development
+## The Lesson
 
-Built entirely using frontier AI coding tools including Claude Code, Codex, and Cline. This project demonstrates that a single architect with the right AI stack can deliver systems at the scale and speed of a full engineering team.
+The whole project taught me that sometimes the breakthrough isn't writing better code — it's recognizing when your process is what's broken and having the discipline to stop and fix that first. When something isn't working, I don't just push harder. I step back, figure out whether the problem is the work or the workflow, and I'm willing to scrap my approach even after 12 hours of effort.
