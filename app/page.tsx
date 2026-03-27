@@ -219,30 +219,6 @@ export default async function Home() {
             </Card>
           </FadeIn>
 
-          {/* Project 6 — Coming Soon */}
-          <FadeIn delay={0.1 * (projects.length + 2)}>
-            <Card className="bg-zinc-900/60 border-zinc-800 overflow-hidden group hover:border-zinc-700 transition-all flex flex-col h-full hover:shadow-[0_0_30px_rgba(20,184,166,0.05)]">
-              <div className="relative h-56 w-full border-b border-zinc-800 bg-zinc-950 overflow-hidden flex items-center justify-center">
-                <div className="text-center">
-                  <Terminal className="w-16 h-16 text-zinc-700 mx-auto mb-2" />
-                  <span className="text-zinc-600 text-xs font-medium tracking-wider uppercase">In Progress</span>
-                </div>
-                <Badge className="absolute top-4 right-4 bg-zinc-900/80 text-zinc-300 border-zinc-700 backdrop-blur-sm pointer-events-none">Coming Soon</Badge>
-              </div>
-              <CardHeader>
-                <CardTitle className="text-2xl text-white">Next Project</CardTitle>
-                <CardDescription className="text-teal-400 font-medium">Coming Soon</CardDescription>
-              </CardHeader>
-              <CardContent className="flex-1 flex flex-col">
-                <p className="text-zinc-400 mb-6 text-sm leading-relaxed">Something new is in the works. Stay tuned.</p>
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {["TBA"].map(tag => (
-                    <Badge key={tag} variant="outline" className="border-zinc-700 text-zinc-300 bg-zinc-900">{tag}</Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </FadeIn>
 
         </div>
       </section>
