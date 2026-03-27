@@ -41,6 +41,8 @@ I got a working demo with real optimizations, settings that actually function, a
 
 I'm now on version 4 with a completely redesigned UI that's intuitive enough for non-technical users — a ground-up rebuild with improved processing and better performance on consumer GPU hardware.
 
+![Phantom Depth V4 — Current Version](/PhantomDepth.png)
+
 ## The Lesson
 
 The whole project taught me that sometimes the breakthrough isn't writing better code — it's recognizing when your process is what's broken and having the discipline to stop and fix that first. When something isn't working, I don't just push harder. I step back, figure out whether the problem is the work or the workflow, and I'm willing to scrap my approach even after 12 hours of effort.
