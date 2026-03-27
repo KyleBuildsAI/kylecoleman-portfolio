@@ -1,12 +1,12 @@
 ---
-title: "Research Library"
+title: "Research Library + OpenClaw Integration"
 subtitle: "AI-Powered Research Hub | OpenClaw Integration"
 description: "A self-hosted research dashboard built on top of OpenClaw that turns passive bookmarking into active intelligence gathering."
 date: "2026-03-26"
 order: 7
 status: "In Production"
 tags: ["Multi-Agent", "OpenClaw", "Dashboard", "AI Research", "Self-Hosted"]
-image: "/research-library 002.png"
+image: "/research-library 001.png"
 github: "https://github.com/KyleBuildsAI/research-library"
 demo: "https://research-library-alpha.vercel.app"
 ---
@@ -17,7 +17,7 @@ The Research Library is a self-hosted research dashboard built on top of OpenCla
 
 Drop in a link or a topic. OpenClaw's agents go to work — pulling relevant information, analyzing content, and delivering a clean, digestible summary back to the dashboard. No manual reading. No tab hoarding. Just structured knowledge, on demand.
 
-![Research Library — Dashboard Detail](/research-library%20001.png)
+![Research Library — Full Dashboard](/research-library%20002.png)
 
 ## Why It Exists
 
