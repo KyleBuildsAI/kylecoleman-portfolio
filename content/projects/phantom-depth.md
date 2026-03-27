@@ -2,7 +2,7 @@
 title: "Phantom Depth"
 subtitle: "Proprietary Real-Time Visual Conversion Pipeline"
 description: "Production-grade computer vision system architected from the ground up across a 200+ file codebase."
-date: "2026-03-01"
+date: "2026-02-01"
 order: 2
 status: "In Development"
 tags: ["Python", "PyTorch", "OpenCV", "Claude Code", "AI-Assisted Dev"]
