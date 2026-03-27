@@ -42,10 +42,12 @@ Every agent in the OpenClaw system has its own identity — represented by these
 <img src="/OpenClaw-Images/OpenClaw%20130.png" alt="Agent" style="width:64px;height:64px;border-radius:12px;" />
 </div>
 
-## Architecture
+## When 20 Agents Went Dark
 
-*Coming soon — detailed architecture write-up.*
+After a routine update, the entire OpenClaw system went offline. The OAuth method I'd originally configured was deprecated, forcing a migration to API key authentication across every agent in the stack. Everything was interconnected — changing one layer broke others.
 
-## Results
+I spent four hours troubleshooting with a different AI model before I realized I was going in circles. It was pattern-matching against documentation, not reasoning through my specific setup. So I changed tools entirely — spun up a parallel configuration, pointed Claude Code at the actual YAML configs, and diagnosed the root issues. All 20 agents came back online.
 
-*Coming soon — performance metrics and outcomes.*
+## Built-In Redundancy
+
+The bigger win was what came after the fix. The system now has three layers of redundancy: the primary configuration, a backup, and a CLI-based fallback. I can manage the entire stack from my phone through Tailscale, wake my workstation remotely, and deploy local models when needed. One outage taught me to build infrastructure where I spend my time building new things instead of firefighting.
