@@ -10,6 +10,12 @@ image: "/AgentHQ.png"
 video: "https://www.youtube.com/watch?v=Mqn6i4yws7E"
 ---
 
+## Beta Demo
+
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;margin-bottom:1.5rem;">
+<iframe src="https://www.youtube.com/embed/Mqn6i4yws7E" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
+</div>
+
 ## Overview
 
 AgentHQ is an isometric pixel art visualization that brings AI agent activity to life. Watch agents work in real time across specialized zones — the Server Core, Collab Hub, Library, Workstation, and Orchestra — each representing a different function in the multi-agent system.
