@@ -1,8 +1,11 @@
 import fs from "fs";
 import matter from "gray-matter";
-import { remark } from "remark";
+import { unified } from "unified";
+import remarkParse from "remark-parse";
 import remarkGfm from "remark-gfm";
-import html from "remark-html";
+import remarkRehype from "remark-rehype";
+import rehypeRaw from "rehype-raw";
+import rehypeStringify from "rehype-stringify";
 
 /**
  * Parse frontmatter only (no HTML conversion). Used by listing pages.
@@ -24,6 +27,12 @@ export async function parseMarkdown(filePath: string): Promise<{
 }> {
   const fileContents = fs.readFileSync(filePath, "utf8");
   const { data, content } = matter(fileContents);
-  const processed = await remark().use(remarkGfm).use(html).process(content);
+  const processed = await unified()
+    .use(remarkParse)
+    .use(remarkGfm)
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeRaw)
+    .use(rehypeStringify)
+    .process(content);
   return { data, htmlContent: processed.toString() };
 }
