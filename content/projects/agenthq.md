@@ -7,6 +7,7 @@ order: 8
 status: "In Development"
 tags: ["Visualization", "Multi-Agent", "Pixel Art", "Real-Time", "OpenClaw"]
 image: "/AgentHQ.png"
+video: "https://www.youtube.com/watch?v=Mqn6i4yws7E"
 ---
 
 ## Overview
