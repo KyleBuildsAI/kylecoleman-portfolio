@@ -9,6 +9,7 @@ tags: ["Web Tool", "Sprites", "AgentHQ", "Open Source", "Game Dev"]
 image: "/opensprite-card.png"
 github: "https://github.com/KyleBuildsAI/OpenSprite"
 demo: "https://open-sprite-one.vercel.app/"
+archived: true
 ---
 
 ## Overview

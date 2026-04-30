@@ -7,6 +7,7 @@ order: 9
 status: "Coming Soon"
 tags: ["Python", "Local LLMs", "API Integration", "Custom UI"]
 image: "/PhotonCore-GUI.png"
+archived: true
 ---
 
 ## Overview

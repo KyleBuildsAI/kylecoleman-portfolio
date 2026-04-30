@@ -7,6 +7,7 @@ order: 11
 status: "In Production"
 tags: ["Python", "Automation", "Data Analysis", "Production"]
 image: "/ecommerce_pipeline.png"
+archived: true
 ---
 
 ## Overview

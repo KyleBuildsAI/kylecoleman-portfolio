@@ -9,6 +9,7 @@ tags: ["Claude API", "Next.js", "Extended Thinking", "Creative AI"]
 image: "/dream-engine.png"
 github: "https://github.com/KyleBuildsAI/ai-dream-engine"
 demo: "https://ai-dream-engine.vercel.app/"
+archived: true
 ---
 
 ## The Inspiration

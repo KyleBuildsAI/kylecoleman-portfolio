@@ -9,6 +9,7 @@ tags: ["Multi-Agent", "OpenClaw", "Dashboard", "AI Research", "Self-Hosted"]
 image: "/research-library 001.png"
 github: "https://github.com/KyleBuildsAI/research-library"
 demo: "https://research-library-alpha.vercel.app"
+archived: true
 ---
 
 ## Overview

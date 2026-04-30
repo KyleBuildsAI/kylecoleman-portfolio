@@ -3,7 +3,7 @@ title: "OpenClaw — Multi-Agent AI Orchestration System"
 subtitle: "Hierarchical Agent Orchestration"
 description: "Self-hosted hierarchical orchestration system with 20+ agents across executive, primary, and sub-agent tiers."
 date: "2026-02-23"
-order: 1
+order: 2
 status: "In Production"
 tags: ["Multi-Agent", "LiteLLM", "OpenRouter", "Docker", "MCP", "TrueNAS"]
 image: "/openclaw_architecture_1.gif"

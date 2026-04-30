@@ -1,17 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Brain, Workflow, Users, CheckCircle, Github, Mail, Linkedin, Terminal } from "lucide-react";
+import { Brain, Workflow, Users, CheckCircle, Github, Mail, Linkedin, Terminal, Archive } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { FadeIn } from "@/components/FadeIn";
-import { getAllProjects } from "@/lib/projects";
+import { getActiveProjects, getArchivedProjects } from "@/lib/projects";
 import { DotPattern } from "@/components/DotPattern";
 import { GitHubRepoCount } from "@/components/GitHubRepoCount";
 import { CurrentYear } from "@/components/CurrentYear";
 
 export default async function Home() {
-  const projects = await getAllProjects();
+  const projects = getActiveProjects();
+  const archivedProjects = getArchivedProjects();
 
   return (
     <main className="relative min-h-screen overflow-hidden">
@@ -212,6 +213,31 @@ export default async function Home() {
 
 
         </div>
+
+        {/* Archive */}
+        {archivedProjects.length > 0 && (
+          <FadeIn delay={0.2} className="mt-20">
+            <div className="flex items-center gap-3 mb-6">
+              <Archive className="w-5 h-5 text-zinc-500" />
+              <h3 className="text-lg font-semibold text-zinc-300 tracking-wide">Archive</h3>
+              <span className="text-xs text-zinc-600">— earlier work, still browsable</span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {archivedProjects.map((project) => (
+                <Link
+                  key={project.slug}
+                  href={`/projects/${project.slug}`}
+                  className="group block rounded-lg border border-zinc-800/70 bg-zinc-900/30 px-4 py-3 hover:border-zinc-700 hover:bg-zinc-900/60 transition-colors"
+                >
+                  <div className="text-sm font-medium text-zinc-200 group-hover:text-teal-400 transition-colors">
+                    {project.title}
+                  </div>
+                  <div className="text-xs text-zinc-500 mt-0.5 line-clamp-2">{project.subtitle}</div>
+                </Link>
+              ))}
+            </div>
+          </FadeIn>
+        )}
       </section>
 
       {/* 6. BACKGROUND */}

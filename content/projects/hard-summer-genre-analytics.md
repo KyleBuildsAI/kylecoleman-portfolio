@@ -9,6 +9,7 @@ tags: ["Data Visualization", "Claude Code", "AI-Assisted Dev", "Analytics"]
 image: "/hard-summer-analytics.png"
 github: "https://github.com/KyleBuildsAI/visual-analytics-demo-hard-summer"
 demo: "https://hard-summer-genre-evolution.vercel.app/"
+archived: true
 ---
 
 ## About This Project

@@ -6,6 +6,7 @@ date: "2025-09-01"
 order: 12
 status: "In Production"
 tags: ["Python", "Multi-LLM Consensus", "Web Scraping", "Prompt Engineering", "Data Pipeline"]
+archived: true
 ---
 
 ## Overview

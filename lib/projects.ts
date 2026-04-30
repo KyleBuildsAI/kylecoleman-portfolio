@@ -18,6 +18,7 @@ export interface ProjectMeta {
   demo?: string;
   video?: string;
   isNew: boolean;
+  archived: boolean;
 }
 
 export interface Project extends ProjectMeta {
@@ -37,6 +38,14 @@ export function getAllProjects(): ProjectMeta[] {
   return slugs
     .map((slug) => getProjectMeta(slug))
     .sort((a, b) => a.order - b.order);
+}
+
+export function getActiveProjects(): ProjectMeta[] {
+  return getAllProjects().filter((p) => !p.archived);
+}
+
+export function getArchivedProjects(): ProjectMeta[] {
+  return getAllProjects().filter((p) => p.archived);
 }
 
 const NEW_THRESHOLD_DAYS = 30;
@@ -65,6 +74,7 @@ function getProjectMeta(slug: string): ProjectMeta {
     demo: (data.demo as string) || undefined,
     video: (data.video as string) || undefined,
     isNew: isProjectNew(data.date as string),
+    archived: Boolean(data.archived),
   };
 }
 
@@ -85,6 +95,7 @@ export async function getProjectBySlug(slug: string): Promise<Project> {
     demo: (data.demo as string) || undefined,
     video: (data.video as string) || undefined,
     isNew: isProjectNew(data.date as string),
+    archived: Boolean(data.archived),
     contentHtml: htmlContent,
   };
 }
